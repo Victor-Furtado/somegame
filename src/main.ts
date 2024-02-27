@@ -1,5 +1,6 @@
 import { ScreenManager } from "./core/ScreenManager";
-import GameScreen from "./screens";
+import { PlayScreen } from "./screens";
+import { GameScreen } from "./utils/interfaces";
 
 export class Game {
   static canvas: HTMLCanvasElement;
@@ -16,7 +17,9 @@ export class Game {
     Game.canvas = document.getElementById("gameCanvas") as HTMLCanvasElement;
     Game.ctx = Game.canvas.getContext("2d")!;
 
-    Game.Screens = {}
+    Game.Screens = {
+      Play: new PlayScreen(),
+    }
 
     this.screenManager = new ScreenManager(Game.Screens["Play"]);
     Game.SetScreen = (screen) => this.screenManager.setScreen(Game.Screens[screen]);

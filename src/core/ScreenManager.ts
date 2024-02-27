@@ -1,5 +1,5 @@
 import { Game } from "../main";
-import GameScreen from "../screens";
+import { GameScreen } from "../utils/interfaces";
 
 export class ScreenManager {
   private currentScreen: GameScreen;
