@@ -1,20 +1,27 @@
 import Entity, { Vector2D } from ".";
+import { PlayerItem } from "../items";
 import { Game } from "../main";
 
-export class Player extends Entity {
-    private velocity!: Vector2D;
+export class Player implements Entity {
+    public position!: Vector2D;
     public sizes!: Vector2D;
+    private velocity!: Vector2D;
     private speed: number = 3;
     private jumping: boolean = false;
     private grounded: boolean = false;
 
+    private item: PlayerItem;
+
     constructor(x: number, y: number) {
-        super(x, y);
+        this.position = new Vector2D(x, y);
         this.velocity = new Vector2D(0, 0);
         this.sizes = new Vector2D(20, 50);
+
+        this.item = new PlayerItem(this, "pistol");
     }
 
     update(dt: number): void {
+        this.item.update();
         this.grounded = this.position.y >= Game.canvas.height - this.sizes.y;
         if (Game.Keys["Space"]) {
             if (!this.jumping && this.grounded) {
@@ -52,9 +59,12 @@ export class Player extends Entity {
     }
 
     draw(): void {
+        this.item.drawBullets();
         const { x, y } = this.position;
         const { x: w, y: h } = this.sizes;
         Game.ctx.fillStyle = "#f66";
         Game.ctx.fillRect(x, y, w, h);
+
+        this.item.draw();
     }
 }

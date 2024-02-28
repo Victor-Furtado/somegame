@@ -1,8 +1,8 @@
+import IGameScreen from ".";
 import { Player } from "../entities";
 import { Game } from "../main";
-import { GameScreen } from "../utils/interfaces";
 
-export class PlayScreen implements GameScreen {
+export class PlayScreen implements IGameScreen {
     private player: Player;
     constructor(){
         this.player = new Player(Game.canvas.width/2, 60);

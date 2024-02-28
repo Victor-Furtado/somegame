@@ -1,6 +1,5 @@
 import { ScreenManager } from "./core/ScreenManager";
-import { PlayScreen } from "./screens";
-import { GameScreen } from "./utils/interfaces";
+import IGameScreen, { PlayScreen } from "./screens";
 
 export class Game {
   static canvas: HTMLCanvasElement;
@@ -9,7 +8,7 @@ export class Game {
   private screenManager: ScreenManager;
 
   static SetScreen: (screen: string) => void;
-  static Screens: Record<string, GameScreen> = {};
+  static Screens: Record<string, IGameScreen> = {};
 
   static Keys: Record<string, boolean> = {};
 

@@ -1,13 +1,13 @@
 import { Game } from "../main";
-import { GameScreen } from "../utils/interfaces";
+import IGameScreen from "../screens";
 
 export class ScreenManager {
-  private currentScreen: GameScreen;
-  private nextScreen: GameScreen | null = null;
+  private currentScreen: IGameScreen;
+  private nextScreen: IGameScreen | null = null;
   private transitionProgress: number = 0;
   private transitionSpeed: number = 0.002; // Adjust the speed as needed
 
-  constructor(initialScreen: GameScreen) {
+  constructor(initialScreen: IGameScreen) {
     this.currentScreen = initialScreen;
   }
 
@@ -43,7 +43,7 @@ export class ScreenManager {
     }
   }
 
-  setScreen(newScreen: GameScreen): void {
+  setScreen(newScreen: IGameScreen): void {
     this.nextScreen = newScreen;
   }
 
